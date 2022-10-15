@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+
+            background-color: #aaf;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">box1</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script>
+        $('.box').click(function () {
+            if ($('.box').css('background-color') === "rgb(170, 170, 255)") {
+                $(this).css('background', 'lightpink')
+            }
+            else {
+                $(this).css('background', '#aaf')
+            }
+
+            var style = {
+                color: "#fff",
+                background: "#000",
+            };
+
+            $(this).css(style);
+
+            // $(this).css('width', '+=100')
+
+        })
+    </script>
+</body>
+
+</html>

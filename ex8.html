@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        height: 500vh;
+        transition: .5s;
+    }
+    .wrap{
+        width: 100%;
+        height: 50px;
+        background-color: #ccc;
+        position: fixed;
+        top: 0;
+    }
+    .box{
+        height: 100%;
+        width: 10%;
+        background-color: teal;
+    }
+
+</style>
+<body>
+    <div class="wrap">
+        <div class="box"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script>
+        // 分母、分子，計算閱讀百分比 %
+
+        $(window).scroll(function(){
+            // console.log('scrollTop',$(window).scrollTop());
+            // console.log('bodyheight',$('body').height());
+            
+            const scrollTop = $(window).scrollTop();
+            const bodyHeight = $('body').height();
+            const windowHeight = $(window).height();
+
+            // console.log('%',$(window).scrollTop()/ ($('body').height() - windowHeight))*100;
+            const percentage = $(window).scrollTop()/ ($('body').height() - windowHeight)*100;
+
+            $('.box').css('width',percentage + '%');
+            if(percentage>50){
+                $('body').css('background', 'orange');
+            }
+            else{
+                $('body').css('background', 'transparent');
+            }
+
+        })
+    </script>
+</body>
+
+</html>

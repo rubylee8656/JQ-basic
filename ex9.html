@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex9</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .wrap {
+            width: 800px;
+            height: 400px;
+            background-color: #ccc;
+            position: relative;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #aff;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            transition: .5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="wrap mx-auto">
+                <div class="box"></div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-12 text-center">
+                <button id="btnUp" class="btn">
+                    <i class="fa-solid fa-caret-up"></i>
+                </button>
+            </div>
+            <div class="col-12 text-center">
+                <button id="btnLeft" class="btn  mx-3">
+                    <i class="fa-solid fa-caret-left"></i>
+                </button>
+
+                <button id="btnRight" class="btn  mx-3">
+                    <i class="fa-solid fa-caret-right"></i>
+                </button>
+            </div>
+            <div class="col-12 text-center">
+                <button id="btnDown" class="btn ">
+                    <i class="fa-solid fa-caret-down"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script>
+        // console.log($('.box').css('left'));
+        // let boxLeft = parseInt($('.box').css('left'));
+
+        let index = 0;
+        const speed = 10;
+        let myInterval = null;
+        // const minLeft = 0;
+
+        function startInterval(cssname, direction, boxEdge, edge, compare) {
+            myInterval = setInterval(() => {
+                eval(`boxEdge ${direction} ${speed}`)
+
+                if(eval(`boxEdge ${compare} edge`)){
+                    $('.box').css(cssname,boxEdge); 
+                }
+            }, 100);
+        }
+        function stopInterval(){
+            clearInterval(myInterval);
+        }
+
+        // Unit, pure function
+        function moveRight(boxLeft){
+            $('.box').css('left',boxLeft);
+        }
+
+        $('#btnRight').mousedown(() => {
+            const boxLeft = parseInt($('.box').css('left'));
+            const maxLeft = $('.wrap').width() - $('.box').width();
+            startInterval('left', '+=', boxLeft, maxLeft, '<=')
+            // console.log('btnRight clicked',$('.box').css('left'));
+        })
+        $('#btnRight').mouseup(stopInterval);
+
+        $('#btnLeft').mousedown(()=>{
+            const boxLeft = parseInt($('.box').css('left'));
+            const minLeft = 0;
+            startInterval('left','-=',boxLeft,minLeft,'>=')
+            // console.log('btnLeft clicked',$('.box').css('left'));
+        })
+        $('#btnLeft').mouseup(stopInterval);
+
+        $('#btnDown').mousedown(()=>{
+            const boxTop = parseInt($('.box').css('top'));
+            const maxTop =$('.wrap').height() - $('.box').height();
+            startInterval('top','+=',boxTop,maxTop,'<=');
+        })
+        $('#btnDown').mouseup(stopInterval);
+        
+        $('#btnUp').mousedown(()=>{
+            const boxTop = parseInt($('.box').css('top'));
+            const minTop = 0;
+            startInterval('top','-=',boxTop,minTop,'>=');
+        })
+        $('#btnUp').mouseup(stopInterval);
+
+        // $('#btnLeft').click(function(){
+        //     console.log('btnRight clicked',$('.box').css('left'));
+        //     const maxLeft = $('.wrap').width()-$('.box').width();
+        //     console.log(maxLeft);
+        //     if(parseInt($('.box').css('left')) < maxLeft){
+        //         $('.box').css('left', '-=100')
+        //     }
+        // })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <button>Click</button>
+            <!-- before -->
+            <ul>
+                <!-- prepend -->
+                <li>item 1</li>
+                <li>item 2</li>
+                <!-- append -->
+            </ul>
+            <!-- after -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script>
+            // // $("ul").append("<li>item 4</li>");
+        // // $("ul").append("<li>item 3</li>");
+        // // $("ul").prepend("<li>item -1</li>");
+        // console.log('start');
+        // // TODO:每按一次按鈕，就新增一行 li
+        // // li 裡面的數字要加 1
+
+        let x = 3;
+
+$('button').click(function () {
+    console.log('button clicked');
+
+    console.log('x1:', x);
+    $("ul").append("<li>item " + x + "</li>");
+
+    x = x + 1;
+    console.log('x2:', x);
+})
+
+// console.log('end');
+
+
+$("ul").before("<li>item before</li>");
+$("ul").after("<li>item after</li>");
+        </script>
+</body>
+</html>
